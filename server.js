@@ -1,7 +1,7 @@
-const cors = require('cors')
+const cors  = require('cors')
 const express = require('express')
-const {dbConnection} = require('./db/db')
-const indexRoutes = require('./routes/routes')
+const {dbConnection} =  require('./db/db')
+const rutas = require('./routes/index')
 
 class Server {
     constructor(){
@@ -18,7 +18,9 @@ class Server {
     }
 
     routes(){
-        indexRoutes
+        this.app.get('/', (req, res) =>{
+            res.json({msg: "hola mundo"})
+        })
         
     }
     async conectarDB(){
@@ -41,6 +43,4 @@ class Server {
 
 }
 
-module.exports ={
-    Server
-}
+module.exports = Server

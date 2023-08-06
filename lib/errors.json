@@ -1,0 +1,69 @@
+{
+    "userNotFound":{
+        "description":"User Not Found",
+        "code": "1001",
+        "httpCode": 404,
+        "entity": "users",
+        "error": "Not Found",
+        "message":{
+            "es": "Usuario o usuarios no encontrados",
+            "en":"User or users not Found"
+        }
+    },
+    "userNotFoundByEmailOrName":{
+        "description":"User Not Found By his/her name or email",
+        "code": "1002",
+        "httpCode": 404,
+        "error": "Not Found",
+        "enity": "users",
+        "message":{
+            "es": "Usuario no encontrado por su Email",
+            "en": "User Not found by his/her Email"
+        }
+    },
+    "UserNotCreated":{
+        "description": "We couln't create the user",
+        "code": "1003",
+        "httpCode": 500,
+        "error": "Internal Error Server",
+        "entity": "users",
+        "message": {
+            "es":"No pudimos crear el usuario, por favor revise sus datos ingresados. Si los datos son correctos por favor comuniquese con el administrador",
+            "en": "We couldn't create the user, please review your ingresed data, if the data is rigth, pleace contact with your admin"
+        }
+    },
+    "UserNotModified":{
+        "description": "an error ocurred, the user wasn't modified",
+        "code":"1004",
+        "httpCode": 400,
+        "error": "bad request",
+        "entity": "users",
+        "message": {
+            "es": "el usuario no fue modificado, probablemente fueron ingresados mal algunos datos, por favor revise",
+            "en": "the user wasn't modified, maybe the data is wrong, pleace check it out"
+        }
+
+    },
+    "UserAlreadyExist":{
+        "description": "The user was al ready signed up",
+        "code": "1005",
+        "httpCode": 400,
+        "error": "bad request",
+        "entity": "users",
+        "message": {
+            "es": "El usuario ya fue registrado con ese correo",
+            "en": "The user was already signed up with this email"
+        }
+    },
+    "ErrorTryingSendEmail":{
+        "description": "Error trying to send an Email",
+        "code": "0001",
+        "httpCode": 500,
+        "error": "Internal Error Server",
+        "entity": "users",
+        "message": {
+            "es": "Un error desconocido ocurrió al intentar enviar el correo de confirmación",
+            "en": "An unknown error ocurred while we were trying to send the email confirmation"
+        }
+    }
+}

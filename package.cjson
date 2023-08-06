@@ -1,0 +1,37 @@
+{
+  "name": "petxotics",
+  "version": "1.0.0",
+  "description": "red social de especies",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    
+    "type": "commonjs"
+  },
+  "keywords": [
+    "animales",
+    "plantas",
+    "especies",
+    "exóticas"
+  ],
+  "author": "Julio Haro C. & Eduardo Miguel Páramo S.",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "aws-sdk": "^2.1430.0",
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "file-type": "^18.5.0",
+    "lodash": "^4.17.21",
+    "mongoose": "^7.4.1",
+    "strtok3": "^7.0.0",
+    "underscore": "^1.13.6",
+    "uniqid": "^5.4.0",
+    "uniqueid": "^1.0.0"
+  }
+}
