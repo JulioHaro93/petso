@@ -1,6 +1,6 @@
 const UserModel = require('../db/user')
 const bcrypts = require('bcryptjs')
-
+const genJWT = require('../middlewares/isAuth')
 
 const login = async (body) =>{
     try{
@@ -28,12 +28,16 @@ const login = async (body) =>{
         const token = await genJWT(user)
 
         return{
+            success: true,
             user: user.name + user.lastName,
             token
         }
     }catch(error){
         return{
+            success: false,
             message: "algo salió mal"
         }
     }
 }
+
+module.exports = login
