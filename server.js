@@ -24,13 +24,9 @@ class Server {
     }
 
     routes(){
-
-        const users = rutas.users
         this.app.get('/', (req, res) =>{
             res.json({msg: "hola mundo"})
         })
-        this.app.use(this.authPath, require('./routes/routes/auth.js').router)
-        this.app.use(users.path, require('./routes/routes/user.js').router)
         
 
         
