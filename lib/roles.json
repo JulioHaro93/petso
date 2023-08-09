@@ -1,11 +1,12 @@
 {
-    "AdminRol":{
-        
-    },
-    "CommonUserRoll":{
-
-    },
-    "SpecialistRol":{
-
-    }
+    "AdminRol":[
+        "UPDATE:USER",
+        "DELETE:USER"
+    ],
+    "CommonUserRoll":[
+        "UPDATE:USER"
+    ],
+    "SpecialistRol":[
+        "UPDATE:USER"
+    ]
 }

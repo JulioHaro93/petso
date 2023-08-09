@@ -5,7 +5,7 @@ const colors = require('colors')
 const dbConnection = async () =>{
 
     try{
-        await mongoose.createConnection(process.env.MONGO_CNN,{
+        await mongoose.connect(process.env.MONGO_CNN,{
             useNewUrlParser: true,
             useUnifiedTopology:true,
 

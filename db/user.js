@@ -2,7 +2,6 @@ const db = require('./db')
 const image = require('./images')
 const Schema = db.mongoose.Schema
 
-
 const UsersSchema = new Schema({
   name: { type: String, required: true }, //Se queda
   lastName: { type: String, required: true }, //Se queda
@@ -27,7 +26,8 @@ const UsersSchema = new Schema({
   rol: {type: String},
   pets: [{type: String}],
   emailConfirmed: {type: Boolean, default: false},
-  stringConfirm: {type: String}
+  stringConfirm: {type: String},
+  presentation: {type: String}
 }, { versionKey: false })
 
 

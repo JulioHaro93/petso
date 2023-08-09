@@ -3,7 +3,7 @@
         "description":"User Not Found",
         "code": "1001",
         "httpCode": 404,
-        "entity": "users",
+        "model": "users",
         "error": "Not Found",
         "message":{
             "es": "Usuario o usuarios no encontrados",
@@ -15,7 +15,7 @@
         "code": "1002",
         "httpCode": 404,
         "error": "Not Found",
-        "enity": "users",
+        "model": "users",
         "message":{
             "es": "Usuario no encontrado por su Email",
             "en": "User Not found by his/her Email"
@@ -26,7 +26,7 @@
         "code": "1003",
         "httpCode": 500,
         "error": "Internal Error Server",
-        "entity": "users",
+        "model": "users",
         "message": {
             "es":"No pudimos crear el usuario, por favor revise sus datos ingresados. Si los datos son correctos por favor comuniquese con el administrador",
             "en": "We couldn't create the user, please review your ingresed data, if the data is rigth, pleace contact with your admin"
@@ -37,7 +37,7 @@
         "code":"1004",
         "httpCode": 400,
         "error": "bad request",
-        "entity": "users",
+        "model": "users",
         "message": {
             "es": "el usuario no fue modificado, probablemente fueron ingresados mal algunos datos, por favor revise",
             "en": "the user wasn't modified, maybe the data is wrong, pleace check it out"
@@ -49,7 +49,7 @@
         "code": "1005",
         "httpCode": 400,
         "error": "bad request",
-        "entity": "users",
+        "model": "users",
         "message": {
             "es": "El usuario ya fue registrado con ese correo",
             "en": "The user was already signed up with this email"
@@ -60,7 +60,7 @@
         "code": "0001",
         "httpCode": 500,
         "error": "Internal Error Server",
-        "entity": "users",
+        "model": "users",
         "message": {
             "es": "Un error desconocido ocurrió al intentar enviar el correo de confirmación",
             "en": "An unknown error ocurred while we were trying to send the email confirmation"

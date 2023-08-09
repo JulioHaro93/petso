@@ -1,14 +1,18 @@
 const usersModels = require('../../models/user')
 const express = require('express')
-const router = express.Router()
-const {schemaValidation} = require('../../schemas/users')
+const { Router } = require('express');
+const router = Router()
+const {schemaValidation, UpdateValidation} = require('../../schemas/users')
+const body_parser = require('body-parser')
+const path = '/api/Users'
+const bodyP = body_parser.urlencoded({extended:true})
 
-const path = 'api/Users'
+router.use(bodyP)
 
-router.get(`${path}/`, (req, res) =>{
-
-    const result = usersModels.get()
-    
+router.get('/',async (req, res) =>{
+    //console.log(req)
+    const result = await usersModels.get()
+    console.log(result)
     if(result.success === true){
         res.json={
             success: true,
@@ -22,10 +26,11 @@ router.get(`${path}/`, (req, res) =>{
         }
     }
 })
-router.get(`${path}/findUsers/:parameters`, (req, res)=>{
+
+router.get(`${path}/findUsers/:parameters`, async (req, res)=>{
     const parameters = req.params.parameters
     
-    const result = usersModels.getUsers()
+    const result = await usersModels.getUsers()
     if(result.success){
         res.json={
             success: true,
@@ -40,19 +45,57 @@ router.get(`${path}/findUsers/:parameters`, (req, res)=>{
     }
 })
 
-router.post(`${path}/sigInUser`, (req, res)=>{
+router.post(`/sigInUser`, async(req, res)=>{
+
     const body = req.body
+
     const validation = schemaValidation(body)
 
     if(!validation){
-        const result = usersModels.create(body)
-
-        if(result.success){
-            res.json= result
+        const result = await usersModels.create(body)
+        console.log(result)
+        if(result.success===true){
+            res.json(
+                result
+                )
         }else{
-            res.json = result
+            res.json(
+                result
+            )
+        }
+    }else{
+        res.json = {
+            success: false,
+            error: "Error en los datos ingresados"
         }
     }
     
 })
-module.exports = router
+
+router.put(`${path}/modifyUser/:id`, async (req, send)=>{
+    const body = req.body
+    const id = req.params.id
+
+    
+    const validation = UpdateValidation(id, body)
+
+    if(!validation){
+        const result = await usersModels.update(id, body)
+
+        if(result.success){
+            res.json  ={
+                result
+            }
+        }else{
+            res.json ={
+                success: false,
+                error: result.error
+            }
+        }
+    }
+})
+
+
+module.exports = {
+    router,
+    path}
