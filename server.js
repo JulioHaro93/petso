@@ -10,6 +10,7 @@ const body_parser = require('body-parser');
 class Server {
     constructor(){
         this.app = express()
+        this.authPath = '/api/auth'
         //this.router = router
         this.port = process.env.PORT
         //Middlewares
@@ -18,17 +19,19 @@ class Server {
         this.routes()
         this.conectarDB()
         
+        
+       
     }
 
     routes(){
 
-        
         const users = rutas.users
         this.app.get('/', (req, res) =>{
             res.json({msg: "hola mundo"})
         })
-
+        this.app.use(this.authPath, require('./routes/routes/auth.js').router)
         this.app.use(users.path, require('./routes/routes/user.js').router)
+        
 
         
     }
