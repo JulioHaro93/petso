@@ -1,6 +1,6 @@
 const UserModel = require('../db/user')
 const bcrypts = require('bcryptjs')
-const genJWT = require('../middlewares/isAuth')
+const {genJWT} = require('../middlewares/isAuth')
 
 const login = async (body) =>{
     try{

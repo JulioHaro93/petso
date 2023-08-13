@@ -5,7 +5,7 @@ const body_parser = require('body-parser')
 const bodyP = body_parser.urlencoded({extended:true})
 const loginModel = require('../../models/login.js')
 const {check} = require('express-validator')
-const login = require('../../models/login.js')
+
 
 router.use(bodyP)
 router.post('/login', async (req, res)=>{

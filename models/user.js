@@ -10,8 +10,8 @@ const { error } = require('console')
 const User = {
 
     get: async ()=>{
-        const users = await UserModel.find()
-        console.log(users)
+        const users = await UserModel.find().select('-stringConfirm -hashed_password -emailConfirmed -isActive -rol')
+
         if(users.length>0){
             return {
                 success: true,
@@ -47,7 +47,6 @@ const User = {
         console.log(body)
         const user = await  UserModel.findOne({email:body.email})
 
-        console.log('Usuario: ///////\n'+user)
         if(user !== null){
             const errorMessage = errMsg.getByCode('1005', {model:'users'})
             return{
@@ -57,12 +56,12 @@ const User = {
             }
         }else{
             const cryptPass = bcrypt.genSaltSync()
-            console.log(body)
+
             body.hashed_password = bcrypt.hashSync(body.password, cryptPass)
             body.password = ""
-            console.log(body)
+
             body.registerDate = moment()
-            console.log(body.registerDate)
+
             const aleatoryStr = aleatory
             
             sendgrid.setApiKey(process.env.SENDGRID_API_KEY)
@@ -79,7 +78,7 @@ const User = {
             const newUser = await UserModel.create(body).then(user=>{
                 console.log("usuario creado")
                 console.log(newUser)
-            }).catch(error =>{
+            }).select('-stringConfirm -hashed_password -emailConfirmed -isActive -rol').catch(error =>{
                 console.log(error)
             })
             try{
@@ -98,9 +97,9 @@ const User = {
         }
     },
     delete: async (id) =>{
-        const userDeleted = await UserModel.findOneAndDelete(id)
+        const userDeleted = await UserModel.findOneAndDelete(id).select('-stringConfirm -hashed_password -emailConfirmed -isActive -rol')
 
-        if(userDeleted){
+        if(userDeleted !== null && userDeleted !== undefined){
             return{
                 success: true,
                 message: "User Deleted",
@@ -118,7 +117,7 @@ const User = {
     },
     update: async (id, body)=>{
         
-        const user = await UserModel.findByIdAndUpdate({_id:id}, body)
+        const user = await UserModel.findByIdAndUpdate({_id:id}, body).select('-stringConfirm -hashed_password -emailConfirmed -isActive -rol')
         if(user){
             return{
                 success: true,

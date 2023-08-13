@@ -7,13 +7,15 @@ const UsersSchema = new Schema({
   lastName: { type: String, required: true }, //Se queda
   birthday: { type: Date}, //Se queda
   email: { type: String, required: true, unique: true }, //Se queda
-  phoneNumber: { type: String, required: true}, // Se queda
+  phoneNumber: { type: String}, // Se queda
   registerDate: { type: Date, default: new Date()},
   hashed_password: { type: String }, //Se queda
   isActive: { type: Boolean, default: false }, // Se queda
   school:{type: String, required: false}, //Se queda
   isSpecialist: {type: Boolean, default: false},
+  degree: {type: String},
   specialities: [{type: String}],
+  speciality: {type: Schema.Types.ObjectId, ref: 'Specialist'},
   location: {type: String, required: false},
   imgFile:[{
     type: Schema.Types.ObjectId,

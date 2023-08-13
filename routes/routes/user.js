@@ -2,46 +2,49 @@ const usersModels = require('../../models/user')
 const express = require('express')
 const { Router } = require('express');
 const router = Router()
-const {schemaValidation, UpdateValidation} = require('../../schemas/users')
+const {schemaValidation, UpdateValidation, DeleteUser} = require('../../schemas/users')
 const body_parser = require('body-parser')
 const path = '/api/Users'
 const bodyP = body_parser.urlencoded({extended:true})
+const {validarJWT} = require('../../middlewares/isAuth.js');
+
 
 router.use(bodyP)
 
-router.get('/',async (req, res) =>{
-    //console.log(req)
+router.get('/', async (req, res) =>{
+    console.log(req.headers)
+    const jwt = validarJWT(req.headers.token)
+    console.log.log(jwt)
     const result = await usersModels.get()
-    console.log(result)
-    if(result.success === true){
-        res.json={
+    if(result.success === true && jwt.success === true){
+        res.json({
             success: true,
             users: result.users
-        }
+        })
         
     }else{
-        res.json={
+        res.json({
             success:false,
             error: result.error
-        }
+        })
     }
 })
 
-router.get(`${path}/findUsers/:parameters`, async (req, res)=>{
+router.get(`/findUsers/:parameters`, async (req, res)=>{
     const parameters = req.params.parameters
     
     const result = await usersModels.getUsers()
-    if(result.success){
-        res.json={
+    if(result.success === true){
+        res.json({
             success: true,
             users: users
-        }
-        req.body ={
+        })
+        req.body({
             success: true,
             users: users
-        }
+        })
     }else{
-        res.json = result  
+        res.json(result)  
     }
 })
 
@@ -64,15 +67,16 @@ router.post(`/sigInUser`, async(req, res)=>{
             )
         }
     }else{
-        res.json = {
+        res.status(400).json({
             success: false,
             error: "Error en los datos ingresados"
-        }
+        })
     }
     
 })
 
-router.put(`${path}/modifyUser/:id`, async (req, send)=>{
+router.put('/modUser/:id', async (req, res)=>{
+
     const body = req.body
     const id = req.params.id
 
@@ -82,15 +86,36 @@ router.put(`${path}/modifyUser/:id`, async (req, send)=>{
     if(!validation){
         const result = await usersModels.update(id, body)
 
-        if(result.success){
-            res.json  ={
+        if(result.success ===true){
+            res.json(
                 result
-            }
+            )
         }else{
-            res.json ={
+            res.json({
                 success: false,
                 error: result.error
-            }
+        })
+        }
+    }
+})
+
+router.delete('/', async (req, res) =>{
+    const id = req.params.id
+
+    const validation = DeleteUser(id)
+
+    if(!validation){
+        const result = await usersModels.delete(id)
+
+        if(result.success ===true){
+            res.json(
+                result
+            )
+        }else{
+            res.json({
+                success: false,
+                error: result.error
+        })
         }
     }
 })

@@ -22,7 +22,12 @@ const UpdateValidation = (id, body)=>{
         check(body.presentation, "La presentación debe ser una secuencia de caracteres, máximos 400 caracteres").isString().not().isEmpty().isLength({max: 400})
     }
 }
+
+const DeleteUser =(id) =>{
+    check(id, 'no es un id válido').isMongoId()
+}
 module.exports = {
     schemaValidation,
-    UpdateValidation
+    UpdateValidation,
+    DeleteUser
 }
