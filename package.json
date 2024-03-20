@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "red social de especies",
   "main": "app.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    
     "type": "commonjs"
   },
   "keywords": [
@@ -19,16 +18,20 @@
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
-    "aws-sdk": "^2.1430.0",
+    "aws-sdk": "^2.1447.0",
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
     "file-type": "^18.5.0",
+    "jsonwebtoken": "^9.0.1",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "mongoose": "^7.4.1",
+    "nodemon": "^3.0.1",
     "strtok3": "^7.0.0",
     "underscore": "^1.13.6",
     "uniqid": "^5.4.0",
